@@ -9,7 +9,7 @@ var TodoApp = require('TodoApp');
 $(document).foundation();
 
 // Load app.scss
-require('style!css!sass!applicationStyles')
+require('style!css!sass!applicationStyles');
 
 $(document).foundation();
 
