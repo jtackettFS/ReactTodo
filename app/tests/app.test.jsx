@@ -2,7 +2,9 @@ var expect = require('expect');
 
 // Allows for test type headers
 describe('App', () => {
-    it('should properly run tests', () => {
-        expect(1).toBe(1);
-    });
+	
+	// Each test is in an "it" block
+	it('should properly run tests', () => {
+		expect(1).toBe(1);
+	});
 });
