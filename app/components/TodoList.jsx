@@ -16,7 +16,7 @@ var TodoList = React.createClass({
 			return todos.map((todo) => {
 				return (
 					// The ... (spread operator) takes every part of the Todo and passes it down as a prop
-					<Todo key={todo.id} {...todo}/>
+					<Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
 				);
 			});
 		};
