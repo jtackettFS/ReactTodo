@@ -56,14 +56,15 @@ var TodoApp = React.createClass({
 	
 	render: function() {
 		// Storing the variable from the state using ES6 destructuring
-		var {todos} = this.state;
+		var {todos, showCompleted, searchText} = this.state;
+		var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 		
 		return(
 			<div>
 				{/* Passing a function to another component */}
 				<TodoSearch onSearch={this.handleSearch}/>
 				{/* Passing a variable to another component */}
-				<TodoList todos={todos} onToggle={this.handleToggle}/>
+				<TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
 				<AddTodo onAddTodo={this.handleAddTodo}/>
 			</div>
 		);
