@@ -2,6 +2,7 @@ var React = require('react');
 var uuid = require('node-uuid');
 
 var AddTodo = require('AddTodo');
+var TodoAPI = require('TodoAPI');
 var TodoList = require('TodoList');
 var TodoSearch = require('TodoSearch');
 
@@ -10,19 +11,14 @@ var TodoApp = React.createClass({
 		return {
 			showCompleted: false,
 			searchText: '',
-			// Creating an array of objects
-			todos: [
-				{
-					id: uuid(),
-					text: 'Pet the Clank',
-					completed: false
-				}, {
-					id: uuid(),
-					text: 'Pet the Loom',
-					completed: true
-				}
-			]
+			// The array of todos
+			todos: TodoAPI.getTodos()
 		};
+	},
+	
+	// Gets called whenever props or state for component is changed
+	componentDidUpdate: function() {
+		TodoAPI.setTodos(this.state.todos);
 	},
 	
 	// Handler
