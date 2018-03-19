@@ -1,9 +1,22 @@
 var React = require('react');
+var moment = require('moment');
 
 var Todo = React.createClass({
 	render: function() {
 		// ES6 destructuring to store Todo members in individual variables
-		var {id, text, completed} = this.props;
+		var {id, text, completed, createdAt, completedAt} = this.props;
+		
+		var renderDate = () => {
+			var message = 'Created ';
+			var timeStamp = createdAt;
+			
+			if(completed) {
+				message = 'Completed ';
+				timeStamp = completedAt;
+			}
+			
+			return message + moment.unix(timeStamp).format('MMM Do YYYY @ h:mm a');
+		};
 		
 		return (
 			// Creating a local function for a click handler
@@ -11,7 +24,8 @@ var Todo = React.createClass({
 				this.props.onToggle(id);
 			}}>
 				<input type="checkbox" checked={completed}/>
-				{text}
+				<p>{text}</p>
+				<p>{renderDate()}</p>
 			</div>
 		);
 	}
