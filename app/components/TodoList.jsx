@@ -11,6 +11,12 @@ var TodoList = React.createClass({
 		
 		// A local function
 		var renderTodos = () => {
+			if(todos.length === 0) {
+				return (
+					<p className={'container__message'}>Nothing to Do</p>
+				);
+			};
+			
 			// map is a way to do a foreach.
 			// This particular one will return some html for each Todo in the array
 			return todos.map((todo) => {
