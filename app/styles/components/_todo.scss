@@ -1,3 +1,4 @@
+// . accesses a class
 .todo {
   align-items: center;
   cursor: pointer;
@@ -5,14 +6,17 @@
   padding: 1rem;
   transition: background .3s ease;
 
+  // Elements within todo class
   p, input {
     margin: 0;
   }
 
+  // first sub inside of todo
   > :first-child {
     margin-right: 1rem;
   }
 
+  // Used to access an action
   &:hover {
     background: #f0f0f0;
   }
