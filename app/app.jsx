@@ -14,9 +14,6 @@ store.subscribe(() => {
 	console.log('New state', store.getState());
 });
 
-store.dispatch(actions.addTodo('Go to Costco'));
-store.dispatch(actions.setSearchText('Costco'));
-store.dispatch(actions.toggleShowCompleted());
 
 // Load foundation
 $(document).foundation();

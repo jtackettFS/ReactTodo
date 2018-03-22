@@ -4,12 +4,13 @@ var {connect} = require('react-redux');
 
 // Local requires
 import Todo from 'Todo';
+var TodoAPI = require('TodoAPI');
 
 export var TodoList = React.createClass({
 	render: function() {
 		
 		// Props is a variable or value that was passed when rendering/using this component
-		var {todos} = this.props;
+		var {todos, showCompleted, searchText} = this.props;
 		
 		// A local function
 		var renderTodos = () => {
@@ -21,7 +22,7 @@ export var TodoList = React.createClass({
 			
 			// map is a way to do a foreach.
 			// This particular one will return some html for each Todo in the array
-			return todos.map((todo) => {
+			return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
 				return (
 					// The ... (spread operator) takes every part of the Todo and passes it down as a prop
 					<Todo key={todo.id} {...todo}/>
@@ -41,9 +42,6 @@ export var TodoList = React.createClass({
 // Connect TodoList to the provider
 export default connect(
 	(state) => {
-		// sets props that are on this component
-		return {
-			todos: state.todos
-		};
+		return state;
 	}
 )(TodoList);
