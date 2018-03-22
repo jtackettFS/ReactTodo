@@ -1,10 +1,14 @@
 var React = require('react');
+var {connect} = require('react-redux');
 var moment = require('moment');
 
-var Todo = React.createClass({
+var actions = require('actions');
+
+// Make this available as a property of the entire component
+export var Todo = React.createClass({
 	render: function() {
 		// ES6 destructuring to store Todo members in individual variables
-		var {id, text, completed, createdAt, completedAt} = this.props;
+		var {id, text, completed, createdAt, completedAt, dispatch} = this.props;
 		var todoClassName = completed ? 'todo todo-completed' : 'todo';
 		var renderDate = () => {
 			var message = 'Created ';
@@ -21,7 +25,7 @@ var Todo = React.createClass({
 		return (
 			// Creating a local function for a click handler
 			<div className={todoClassName} onClick={() => {
-				this.props.onToggle(id);
+				dispatch(actions.toggleTodo(id));
 			}}>
 				<div>
 					<input type="checkbox" checked={completed}/>
@@ -35,4 +39,5 @@ var Todo = React.createClass({
 	}
 });
 
-module.exports = Todo;
+// Works as normal when doing a require
+export default connect()(Todo);

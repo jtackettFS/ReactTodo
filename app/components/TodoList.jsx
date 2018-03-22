@@ -1,9 +1,11 @@
 var React = require('react');
+// connect is a way to connect to the provider
+var {connect} = require('react-redux');
 
 // Local requires
-var Todo = require('Todo');
+import Todo from 'Todo';
 
-var TodoList = React.createClass({
+export var TodoList = React.createClass({
 	render: function() {
 		
 		// Props is a variable or value that was passed when rendering/using this component
@@ -22,7 +24,7 @@ var TodoList = React.createClass({
 			return todos.map((todo) => {
 				return (
 					// The ... (spread operator) takes every part of the Todo and passes it down as a prop
-					<Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+					<Todo key={todo.id} {...todo}/>
 				);
 			});
 		};
@@ -36,4 +38,12 @@ var TodoList = React.createClass({
 	}
 });
 
-module.exports = TodoList;
+// Connect TodoList to the provider
+export default connect(
+	(state) => {
+		// sets props that are on this component
+		return {
+			todos: state.todos
+		};
+	}
+)(TodoList);

@@ -2,9 +2,9 @@ var React = require('react');
 var uuid = require('node-uuid');
 var moment = require('moment');
 
-var AddTodo = require('AddTodo');
+import AddTodo from 'AddTodo';
 var TodoAPI = require('TodoAPI');
-var TodoList = require('TodoList');
+import TodoList from 'TodoList';
 var TodoSearch = require('TodoSearch');
 
 var TodoApp = React.createClass({
@@ -45,19 +45,6 @@ var TodoApp = React.createClass({
 		});
 	},
 	
-	handleToggle: function(id) {
-		var updatedTodos = this.state.todos.map((todo) => {
-			if(todo.id === id) {
-				todo.completed = !todo.completed;
-				todo.completedAt = todo.completed ? moment().unix() : undefined;
-			}
-			
-			return todo;
-		});
-		
-		this.setState(updatedTodos);
-	},
-	
 	render: function() {
 		// Storing the variable from the state using ES6 destructuring
 		var {todos, showCompleted, searchText} = this.state;
@@ -73,7 +60,7 @@ var TodoApp = React.createClass({
 							{/* Passing a function to another component */}
 							<TodoSearch onSearch={this.handleSearch}/>
 							{/* Passing a variable to another component */}
-							<TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+							<TodoList/>
 							<AddTodo onAddTodo={this.handleAddTodo}/>
 						</div>
 					</div>

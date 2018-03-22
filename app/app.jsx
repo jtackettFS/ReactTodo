@@ -1,5 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+// Provides store to children directly
+var {Provider} = require('react-redux');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 // Local requires
@@ -25,6 +27,8 @@ require('style!css!sass!applicationStyles');
 $(document).foundation();
 
 ReactDOM.render(
-    <TodoApp/>,
+    <Provider store={store}>
+	    <TodoApp/>
+    </Provider>,
     document.getElementById('app')
 );
