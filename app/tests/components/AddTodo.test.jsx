@@ -4,6 +4,7 @@ var TestUtils = require('react-addons-test-utils');
 var expect = require('expect');
 var $ = require('jquery');
 
+import * as actions from 'actions';
 var {AddTodo} = require('AddTodo');
 
 describe('AddTodo', () => {
@@ -14,10 +15,8 @@ describe('AddTodo', () => {
 	
 	it('should dispatch ADD_TODO when valid todo text', () => {
 		var todoText = 'Change todo';
-		var action = {
-			type: 'ADD_TODO',
-			text: todoText
-		};
+		var action = actions.startAddTodo(todoText);
+		
 		// Spies can track calls made to other functions
 		var spy = expect.createSpy();
 		// Create an instance of this component and attach the spy

@@ -29,14 +29,15 @@ export var todosReducer = (state = [], action) => {
 			// Return the entire array (with ...), and add a new one
 			return [
 				...state,
-				{
-					id: uuid(),
-					text: action.text,
-					completed: false,
-					createdAt: moment().unix(),
-					completedAt: undefined
-				}
+				action.todo
 			];
+			
+		case 'ADD_TODOS':
+			return [
+				...state,
+				...action.todos
+			];
+			
 		case 'TOGGLE_TODO':
 			// Use map to iterate through the array and find the object to be updated
 			return state.map((todo) => {
